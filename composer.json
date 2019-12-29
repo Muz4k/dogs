@@ -1,0 +1,12 @@
+{
+    "name": "muz4k/dogs",
+    "description": "test",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Muz4k",
+            "email": "muz4k.oo@gmail.com"
+        }
+    ],
+    "require": {}
+}
