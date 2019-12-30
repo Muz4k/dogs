@@ -7,13 +7,10 @@
             "email": "muz4k.oo@gmail.com"
         }
     ],
-    "bin": [
-        "bin/ShibaInu"
-    ],
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.2.5",
+        "php": "^7.0",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "symfony/console": "5.0.*",

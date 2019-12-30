@@ -10,7 +10,7 @@ if (file_exists($globalAutoloadPath)) {
     require_once $projectAutoloadPath;
 }
 
-use Dogs\ShibaInu;
+use App\GreetCommand;
 
-$dog = new ShibaInu('female');
-$dog->toHunt();
+$f = new GreetCommand();
+$f->configure();
