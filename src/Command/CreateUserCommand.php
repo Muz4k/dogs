@@ -3,6 +3,7 @@
 
 namespace App\Command;
 
+use App\Dogs\DogChoice;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +22,6 @@ class CreateUserCommand extends Command
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Creates a new dog.')
-
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp('This command allows you to create a dog...')
@@ -34,16 +34,14 @@ class CreateUserCommand extends Command
             ->addOption(
                 'breed',
                 null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'Choose a breed of dog',
-                ['ShibaInu']
+                InputOption::VALUE_REQUIRED,
+                'Choose a breed of dog'
             )
             ->addOption(
-                'action',
+                'gender',
                 null,
-                InputOption::VALUE_REQUIRED | InputOption::VALUE_IS_ARRAY,
-                'what action will the dog do?',
-                ['song', 'hunt']
+                InputOption::VALUE_REQUIRED,
+                'What gender will the dog do?'
             );
     }
 
@@ -53,22 +51,39 @@ class CreateUserCommand extends Command
         $output->writeln('Hello, '.$input->getArgument('userName').'! You create a dog.' );
         $output->writeln('His name '.$input->getArgument('dogName').'.');
         $helper = $this->getHelper('question');
-        $question = new Question('Please enter the breed of your dog: ', 'ShibaInu');
 
-        $bundleName = $helper->ask($input, $output, $question);
-        $output->writeln('Your dog have breed '.$bundleName);
+        if (empty($input->getOption('gender'))) {
+            $question = new ChoiceQuestion(
+                'Please select gender your dog',
+                ['male', 'female'],
+                0
+            );
+            $gender = $helper->ask($input, $output, $question);
+        } else {
+            $gender = $input->getOption('gender');
+        }
+            $output->writeln('Your dog have gender '. $gender);
 
-        $question = new ChoiceQuestion(
-            'Please select action',
-            ['sound', 'hunt'],
-            0
-        );
-        $question->setErrorMessage('Action %s is invalid.');
+        if (empty($input->getOption('breed'))) {
+            $question = new Question('Please enter the breed of your dog: ', 'ShibaInu');
+            $breed = $helper->ask($input, $output, $question);
+        } else {
+            $breed = $input->getOption('breed');
+        }
+            $output->writeln('Your dog have breed '. $breed);
 
-        $action= $helper->ask($input, $output, $question);
-        $output->writeln('Cool, '. $input->getArgument('userName'). '! Look action '. $action .' of your ' . $input->getArgument('dogName'));
-
-
+            $dogsBreed = new DogChoice($breed, $gender);
+            $question = new ChoiceQuestion(
+                'Please select action',
+                ['sound', 'hunt'],
+                0
+            );
+            $question->setErrorMessage('Action %s is invalid.');
+            $action = $helper->ask($input, $output, $question);
+            $output->writeln('Cool, '. $input->getArgument('userName'). '!');
+            $output->writeln('Look action '. $action .' of your ' . $input->getArgument('dogName'));
+            $do = $dogsBreed->getBreed()->$action();
+            $output->writeln($do);
         return 0;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Dogs;
+namespace App\Dogs;
 
 
 class Dachshund implements DogsInterface
@@ -13,20 +13,32 @@ class Dachshund implements DogsInterface
         $this->gender = $gender;
     }
 
-    public function getBark()
+    public function sound()
     {
-       ('Waf-waf!');
+       return 'Waf-waf!.
+░░▄▄
+░▄█▀░░░░░░░░░░░░░░░░░░▄███████▄░░░▄
+▄█░░░░░░░░░░░░░░░░░░▄███████▀▀██▄███
+██░░░░░░░░░░░░░░░░░░████▀███▄▄██████
+██▄░░░░░░░░░░░░░░░░░████░▀████████▀
+░███▄░░░░░░░░░░░░░░░█████▄░▀███▀
+░░▀█████▄▄▄▄▄▄▄▄▄▄▄▄░▀████░░██
+░░░░█████████████████▄▄░░▄▄██▀
+░░░░█████████████████████████
+░░░░█████████████████████████
+░░░░█████████████████████████
+░░░░█████████████████████████
+░░░░█████▀░▄░░░░░░░░░░▄▄▄░███
+░░░░███▀░▄██░░░░░░░░░░███░░██▄
+░░░░██░░░███▄░░░░░░░░░░██░░▀██▄▄
+░░░░▀▀▀░░░▀▀▀▀░░░░░░░░░░░░░░░▀▀▀';
     }
 
-    public function toHunt()
+    public function hunt()
     {
         $mapping = [
-            'male' => function () {
-           ('*very hunt*');
-            },
-            'female' => function () {
-            ("{$this->gender} TOO very hunt!");
-            }
+            'male' => '*very hunt*',
+            'female' => "{$this->gender} TOO very hunt!"
         ];
         return $mapping[$this->gender];
     }

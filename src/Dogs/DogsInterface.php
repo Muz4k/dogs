@@ -1,9 +1,10 @@
 <?php
 
-namespace Dogs;
+namespace App\Dogs;
 
 interface DogsInterface
 {
-    public function getBark();
-    public function toHunt();
+    public function __construct($gender);
+    public function sound();
+    public function hunt();
 }
