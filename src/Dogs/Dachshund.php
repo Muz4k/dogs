@@ -15,7 +15,8 @@ class Dachshund implements DogsInterface
 
     public function sound()
     {
-        return 'Waf-waf!.
+        return '
+        Waf-waf!
 ░░▄▄
 ░▄█▀░░░░░░░░░░░░░░░░░░▄███████▄░░░▄
 ▄█░░░░░░░░░░░░░░░░░░▄███████▀▀██▄███

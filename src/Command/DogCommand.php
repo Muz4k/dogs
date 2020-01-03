@@ -8,7 +8,6 @@ use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Question\Question;
@@ -30,19 +29,6 @@ class DogCommand extends Command
         $this
             ->addArgument('userName', InputArgument::REQUIRED, 'What is your name?')
             ->addArgument('dogName', InputArgument::REQUIRED, 'What is your dog name?');
-        $this
-            ->addOption(
-                'breed',
-                'b',
-                InputOption::VALUE_REQUIRED,
-                'Choose a breed of the dog'
-            )
-            ->addOption(
-                'gender',
-                'g',
-                InputOption::VALUE_REQUIRED,
-                'What gender will the dog have?'
-            );
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -83,29 +69,22 @@ class DogCommand extends Command
         _____¶¶¶¶¶_______¶¶¶¶¶¶ ');
 
         $helper = $this->getHelper('question');
-        $gender = $input->getOption('gender');
-        if (!$gender) {
-            $genderQuestion = new ChoiceQuestion(
-                'Please select gender of your dog',
-                ['male', 'female'],
-                0
-            );
-            $gender = $helper->ask($input, $output, $genderQuestion);
-        }
+        $genderQuestion = new ChoiceQuestion(
+            'Please select gender of your dog',
+            ['male', 'female'],
+            0
+        );
+        $gender = $helper->ask($input, $output, $genderQuestion);
         $output->writeln('Your dog have gender ' . $gender);
 
-        $breed = $input->getOption('breed');
-
-        if (!$breed) {
-            $breedQuestion = new Question('Please enter breed of your dog (default: ShibaInu): ', 'ShibaInu');
-            $breedQuestion->setValidator(function ($answer) use ($breeds) {
-                if (!in_array($answer, $breeds)) {
-                    throw new Exception('Breed is invalid.');
-                }
-                return $answer;
-            });
-            $breed = $helper->ask($input, $output, $breedQuestion);
-        }
+        $breedQuestion = new Question('Please enter breed of your dog (default: ShibaInu): ', 'ShibaInu');
+        $breedQuestion->setValidator(function ($answer) use ($breeds) {
+            if (!in_array($answer, $breeds)) {
+                throw new Exception('Breed is invalid.');
+            }
+            return $answer;
+        });
+        $breed = $helper->ask($input, $output, $breedQuestion);
 
         $output->writeln('Your dog have breed: ' . $breed);
 

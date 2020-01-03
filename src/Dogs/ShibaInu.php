@@ -15,7 +15,8 @@ class ShibaInu implements DogsInterface
     public function sound()
     {
         $mapping = [
-            'male' => 'Wof-wof!
+            'male' => '
+                Wof-wof!
             ░░██▄░░░░░░░░░░▄██░░
             ░▄▀░█▄░░░░░░░░▄█░░█░
             ░█░▄░█▄░░░░░░▄█░▄░█░
@@ -28,7 +29,8 @@ class ShibaInu implements DogsInterface
             ░▀███▄░░████░░▄███▀░
             ░░░▀██▄░▀██▀░▄██▀░░░
             ░░░░░░▀██████▀░░░░░░',
-            'female' => 'Are you love me?
+            'female' => '
+                Are you love me?
                 ╭━━━╮╱▔▔▔▔╲╭━━━╮ 
                  ┃┈┈┈╱╭━╮╭━╮╲┈┈┈┃ 
                  ┃┈┈╭▏┃▉┃┃▉┃▕╮┈┈┃  
