@@ -2,11 +2,10 @@
 
 namespace App\Dogs;
 
-use App\Dogs\ShibaInu;
 use App\Dogs\Dachshund;
-use App\Dogs\PlushLabrador;
 use App\Dogs\Pug;
-use App\Dogs\DogsInterface;
+use App\Dogs\RubberLabrador;
+use App\Dogs\ShibaInu;
 
 class DogChoice
 {
@@ -24,7 +23,7 @@ class DogChoice
         $mapping = [
             'ShibaInu' => ShibaInu::class,
             'Dachshund' => Dachshund::class,
-            'PlushLabrador' => PlushLabrador::class,
+            'RubberLabrador' => RubberLabrador::class,
             'Pug' => Pug::class
         ];
 

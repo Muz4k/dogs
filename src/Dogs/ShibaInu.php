@@ -2,9 +2,6 @@
 
 namespace App\Dogs;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
-
 
 class ShibaInu implements DogsInterface
 {

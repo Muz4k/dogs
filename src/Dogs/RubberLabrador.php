@@ -4,7 +4,7 @@
 namespace App\Dogs;
 
 
-class PlushLabrador implements DogsInterface
+class RubberLabrador implements DogsInterface
 {
     public $gender;
 
@@ -20,7 +20,8 @@ class PlushLabrador implements DogsInterface
 
     public function hunt()
     {
-        return 'are you seriosly?? 
+        return '
+        are you seriously?? 
         ╭╮┈╱▔╲▂▂▂╱▔╲┈┈┈┈
         ┃┃▕▕╲╭┈╮╭┈╱▏▏┈┈┈
         ┃┃▕╱▕┊▋┊┊▋▏╲▏┈┈┈
