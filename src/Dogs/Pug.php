@@ -4,16 +4,16 @@
 namespace App\Dogs;
 
 
-class Pug implements DogsInterface
+class Pug implements DogInterface
 {
-    public $gender;
+    private $gender;
 
-    public function __construct($gender)
+    public function __construct(string $gender)
     {
         $this->gender = $gender;
     }
 
-    public function sound()
+    public function sound():string
     {
         $mapping = [
             'male' => 'Hrrr...
@@ -63,7 +63,7 @@ class Pug implements DogsInterface
         return $mapping[$this->gender];
     }
 
-    public function hunt()
+    public function hunt():string
     {
         return '...Maybe later?';
     }

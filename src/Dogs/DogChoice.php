@@ -6,19 +6,20 @@ use App\Dogs\Dachshund;
 use App\Dogs\Pug;
 use App\Dogs\RubberLabrador;
 use App\Dogs\ShibaInu;
+use phpDocumentor\Reflection\Types\Object_;
 
 class DogChoice
 {
-    public $breed;
-    public $gender;
+    private $breed;
+    private $gender;
 
-    public function __construct($breed, $gender)
+    public function __construct(string $breed, string $gender)
     {
         $this->gender = $gender;
         $this->breed = $breed;
     }
 
-    public function getBreed()
+    public function getBreed():DogInterface
     {
         $mapping = [
             'ShibaInu' => ShibaInu::class,

@@ -3,16 +3,16 @@
 namespace App\Dogs;
 
 
-class ShibaInu implements DogsInterface
+class ShibaInu implements DogInterface
 {
-    public $gender;
+    private $gender;
 
-    public function __construct($gender)
+    public function __construct(string $gender)
     {
         $this->gender = $gender;
     }
 
-    public function sound()
+    public function sound():string
     {
         $mapping = [
             'male' => '
@@ -43,7 +43,7 @@ class ShibaInu implements DogsInterface
         return $mapping[$this->gender];
     }
 
-    public function hunt()
+    public function hunt():string
     {
         return '_________________ 
             _______¶¶¶¶¶¶¶¶¶ 

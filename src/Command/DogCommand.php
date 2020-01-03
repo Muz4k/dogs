@@ -17,9 +17,8 @@ class DogCommand extends Command
     // the name of the command (the part after "bin/console")
     protected static $defaultName = 'create:dog';
 
-    protected function configure()
+    protected function configure():void
     {
-
         $this
             // the short description shown while running "php bin/console list"
             ->setDescription('Creates a new dog.')
@@ -34,9 +33,15 @@ class DogCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $breeds = ['Pug', 'ShibaInu', 'Dachshund', 'RubberLabrador'];
+
+        /** @var string $userName */
+        $userName = $input->getArgument('userName');
+        /** @var string $dogName */
+        $dogName =  $input->getArgument('dogName');
+
         // retrieve the argument value using getArgument()
-        $output->writeln('Hello, ' . $input->getArgument('userName') . '! You create the dog.');
-        $output->writeln('Dog\'s name: ' . $input->getArgument('dogName') . '.');
+        $output->writeln('Hello, ' . $userName . '! You create the dog.');
+        $output->writeln('Dog\'s name: ' . $dogName . '.');
         $output->writeln('
         ______Hello! ^__^ __ 
         ______¶¶¶¶¶¶¶¶¶¶¶ 
@@ -78,7 +83,7 @@ class DogCommand extends Command
         $output->writeln('Your dog have gender ' . $gender);
 
         $breedQuestion = new Question('Please enter breed of your dog (default: ShibaInu): ', 'ShibaInu');
-        $breedQuestion->setValidator(function ($answer) use ($breeds) {
+        $breedQuestion->setValidator(function (string $answer) use ($breeds):string {
             if (!in_array($answer, $breeds)) {
                 throw new Exception('Breed is invalid.');
             }
@@ -98,8 +103,8 @@ class DogCommand extends Command
         $actionQuestion->setErrorMessage('Action %s is invalid.');
 
         $action = $helper->ask($input, $output, $actionQuestion);
-        $output->writeln('Cool, ' . $input->getArgument('userName') . '!');
-        $output->writeln('Look action ' . $action . ' of your ' . $input->getArgument('dogName'));
+        $output->writeln('Cool, ' . $userName . '!');
+        $output->writeln('Look action ' . $action . ' of your ' . $dogName);
 
         $currentAction = $currentDog->getBreed()->$action();
         $output->writeln($currentAction);

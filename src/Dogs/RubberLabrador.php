@@ -4,21 +4,25 @@
 namespace App\Dogs;
 
 
-class RubberLabrador implements DogsInterface
+class RubberLabrador implements DogInterface
 {
-    public $gender;
+    private $gender;
 
-    public function __construct($gender)
+    /**
+     * RubberLabrador constructor.
+     * @param string $gender
+     */
+    public function __construct(string $gender)
     {
     $this->gender = $gender;
     }
 
-    public function sound()
+    public function sound():string
     {
        return 'Peow - Peow!';
     }
 
-    public function hunt()
+    public function hunt():string
     {
         return '
         are you seriously?? 

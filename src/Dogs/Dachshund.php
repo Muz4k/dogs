@@ -4,16 +4,20 @@
 namespace App\Dogs;
 
 
-class Dachshund implements DogsInterface
+class Dachshund implements DogInterface
 {
-    public $gender;
+    private $gender;
 
-    public function __construct($gender)
+    /**
+     * Dachshund constructor.
+     * @param string $gender
+     */
+    public function __construct(string $gender)
     {
         $this->gender = $gender;
     }
 
-    public function sound()
+    public function sound():string
     {
         return '
         Waf-waf!
@@ -35,7 +39,7 @@ class Dachshund implements DogsInterface
 ░░░░▀▀▀░░░▀▀▀▀░░░░░░░░░░░░░░░▀▀▀';
     }
 
-    public function hunt()
+    public function hunt():string
     {
         $mapping = [
             'male' => '*very hunt*',
