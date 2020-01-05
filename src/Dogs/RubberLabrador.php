@@ -8,10 +8,6 @@ class RubberLabrador implements DogInterface
 {
     private $gender;
 
-    /**
-     * RubberLabrador constructor.
-     * @param string $gender
-     */
     public function __construct(string $gender)
     {
     $this->gender = $gender;

@@ -2,11 +2,7 @@
 
 namespace App\Dogs;
 
-use App\Dogs\Dachshund;
-use App\Dogs\Pug;
-use App\Dogs\RubberLabrador;
-use App\Dogs\ShibaInu;
-use phpDocumentor\Reflection\Types\Object_;
+use Exception;
 
 class DogChoice
 {
@@ -19,15 +15,21 @@ class DogChoice
         $this->breed = $breed;
     }
 
-    public function getBreed():DogInterface
+    /**
+     * @return DogInterface
+     * @throws Exception
+     */
+    public function getDogWithBreed(): DogInterface
     {
         $mapping = [
             'ShibaInu' => ShibaInu::class,
             'Dachshund' => Dachshund::class,
-            'RubberLabrador' => RubberLabrador::class,
-            'Pug' => Pug::class
+            'Pug' => Pug::class,
+            'RubberLabrador' => RubberLabrador::class
         ];
-
-        return new $mapping[$this->breed]($this->gender);
+        if (array_key_exists($this->breed, $mapping)) {
+            return new $mapping[$this->breed]($this->gender);
+        }
+        throw new Exception('Breed is invalid.');
     }
 }

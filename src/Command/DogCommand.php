@@ -39,7 +39,6 @@ class DogCommand extends Command
         /** @var string $dogName */
         $dogName =  $input->getArgument('dogName');
 
-        // retrieve the argument value using getArgument()
         $output->writeln('Hello, ' . $userName . '! You create the dog.');
         $output->writeln('Dog\'s name: ' . $dogName . '.');
         $output->writeln('
@@ -83,6 +82,7 @@ class DogCommand extends Command
         $output->writeln('Your dog have gender ' . $gender);
 
         $breedQuestion = new Question('Please enter breed of your dog (default: ShibaInu): ', 'ShibaInu');
+
         $breedQuestion->setValidator(function (string $answer) use ($breeds):string {
             if (!in_array($answer, $breeds)) {
                 throw new Exception('Breed is invalid.');
@@ -91,9 +91,9 @@ class DogCommand extends Command
         });
         $breed = $helper->ask($input, $output, $breedQuestion);
 
-        $output->writeln('Your dog have breed: ' . $breed);
-
         $currentDog = new DogChoice($breed, $gender);
+
+        $output->writeln('Your dog have breed: ' . $breed);
 
         $actionQuestion = new ChoiceQuestion(
             'Please select action:',
@@ -106,7 +106,7 @@ class DogCommand extends Command
         $output->writeln('Cool, ' . $userName . '!');
         $output->writeln('Look action ' . $action . ' of your ' . $dogName);
 
-        $currentAction = $currentDog->getBreed()->$action();
+        $currentAction = $currentDog->getDogWithBreed()->$action();
         $output->writeln($currentAction);
 
         return 0;

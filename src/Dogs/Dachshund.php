@@ -43,7 +43,7 @@ class Dachshund implements DogInterface
     {
         $mapping = [
             'male' => '*very hunt*',
-            'female' => "{$this->gender} TOO very hunt!"
+            'female' => "{$this->gender} TOO *very hunt*!"
         ];
         return $mapping[$this->gender];
     }
