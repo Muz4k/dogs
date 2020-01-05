@@ -27,6 +27,7 @@
  ![usage](img/example.png)
  
  Ну и конечно, никто не даст тебе оступиться:
+ 
   ![usage](img/err2.png)
   
   
